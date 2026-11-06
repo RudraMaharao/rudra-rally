@@ -10,11 +10,11 @@ Checked against the [official challenge page](https://builder.aws.com/build/hack
 | GitHub source link | Public repository: https://github.com/RudraMaharao/rudra-rally; linked in Let’s team up. |
 | Hackathon Your project entry | Draft in SUBMISSION.md. Submission has not been made or verified by this agent. |
 | Portfolio screenshots | Included in screenshots/. |
-| AWS setup screenshots | Capture the Amplify deployment and backend resource screens before submitting; do not expose credentials or private reviews. |
+| AWS setup screenshots | Pending console sign-in: the Chrome AWS session was signed out. Capture the Amplify deployment and backend screens before submitting; do not expose credentials or private reviews. |
 | AWS services / process / learning / challenges | Documented in AWS.md and the submission draft. Rudra should review the first-person draft. |
 | Original work / not previously published | Built as original work during this November 5–7 session. We cannot establish the organizer’s interpretation of “hasn’t been published before” or any publication history outside this session. Review the Rules before attesting eligibility. |
 
-The public About page lists the deadline as November 6, 2026 at 11:59 PM PST, which is **November 7 at 1:29 PM IST**. Judging is listed for the weeks of November 9 and 16; winners are announced the week of November 23. The page’s Rules tab and the entrant’s eligibility still need confirmation. This checklist does not claim registration, student verification or submission has been completed.
+The public About page lists the deadline as November 6, 2026 at 11:59 PM PST, which is **November 7 at 1:29 PM IST**. Judging is listed for the weeks of November 9 and 16; winners are announced the week of November 23. The Rules tab was reviewed; student verification and personal eligibility still need your confirmation. The Rules specify judging through November 23 at 11:59 PM Pacific (November 24 at 1:29 PM IST). This checklist does not claim registration, student verification or submission has been completed.
 
 ## Rubric evidence
 

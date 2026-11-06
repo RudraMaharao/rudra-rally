@@ -35,7 +35,7 @@ Keep this output private. Do not put written reviews in public screenshots or so
 
 ## Hosting and judging
 
-Keep the Amplify app, API, Lambda and table active for the whole judging period. No automatic expiry is configured. A successful deployment is a point-in-time verification, not a promise of uninterrupted future availability. Check the live link before submission and during judging; monitor AWS billing and service status in your account.
+Keep the Amplify app, API, Lambda and table active through November 23, 2026 at 11:59 PM Pacific (November 24 at 1:29 PM IST), the end of the judging period in the challenge Rules. No automatic expiry is configured. A successful deployment is a point-in-time verification, not a promise of uninterrupted future availability. Check the live link before submission and during judging; monitor AWS billing and service status in your account.
 
 Amplify app: `d315hq6yqhwgli`, branch `main`. API: `dk3pfpa8al`. Function: `rudra-rally-api-v1`. DynamoDB table: `rudra-rally-scores-v1`. Deployment metadata is kept in local `deployment.json`; provisioning state is in local `infrastructure.json`.
 
