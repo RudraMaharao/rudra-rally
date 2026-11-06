@@ -1,0 +1,24 @@
+import {createHmac,randomBytes,timingSafeEqual} from 'node:crypto';
+import {DynamoDBClient,PutItemCommand,QueryCommand,GetItemCommand,TransactWriteItemsCommand} from '@aws-sdk/client-dynamodb';
+import {replayRace,COURSE_VERSION} from './race.js';
+const db=new DynamoDBClient({});
+function sign(data){const payload=Buffer.from(JSON.stringify(data)).toString('base64url');return payload+'.'+createHmac('sha256',process.env.SIGNING_SECRET).update(payload).digest('base64url');}
+function verify(token,kind){if(typeof token!=='string'||token.length>2500)throw Error('Invalid token');const [p,s]=token.split('.'),expected=createHmac('sha256',process.env.SIGNING_SECRET).update(p||'').digest(),got=Buffer.from(s||'','base64url');if(got.length!==expected.length||!timingSafeEqual(got,expected))throw Error('Invalid signature');const data=JSON.parse(Buffer.from(p,'base64url').toString());if(data.kind!==kind||Date.now()-data.at>7200000||data.version!==COURSE_VERSION)throw Error('Run expired');return data;}
+const response=(statusCode,data)=>({statusCode,headers:{'content-type':'application/json','cache-control':'no-store'},body:JSON.stringify(data)});
+export async function handler(event){try{const method=event.requestContext?.http?.method,path=event.rawPath;
+ if(method==='GET'&&path==='/scores'){
+ const boards=await Promise.all(['race','tour'].map(mode=>db.send(new QueryCommand({TableName:process.env.TABLE_NAME,KeyConditionExpression:'pk = :p',ExpressionAttributeValues:{':p':{S:mode+'-v'+COURSE_VERSION}},Limit:5,ScanIndexForward:true}))));
+ return response(200,{scores:boards.flatMap(result=>(result.Items||[]).map(i=>({name:i.name.S,milliseconds:Number(i.ms.N),score:Number(i.score.N)}))).sort((a,b)=>a.milliseconds-b.milliseconds).slice(0,5)});
+ }
+ if(method==='GET'&&path==='/reviews/summary'){const r=await db.send(new GetItemCommand({TableName:process.env.TABLE_NAME,Key:{pk:{S:'rating-summary'},sk:{S:'all'}}}));const count=Number(r.Item?.count?.N||0),total=Number(r.Item?.total?.N||0);return response(200,{count,average:count?Math.round(total/count*10)/10:null});}
+ if((event.body||'').length>350000)return response(413,{error:'Replay too large'});const body=JSON.parse(event.body||'{}');
+ if(method==='POST'&&path==='/reviews'){
+ const rating=body.rating,comment=typeof body.comment==='string'?body.comment.trim():'',visitor=body.visitor;
+ if(!Number.isInteger(rating)||rating<1||rating>5||comment.length>1000||!(/^[a-f0-9]{32}$/.test(visitor||'')))return response(400,{error:'Choose 1–5 stars and keep your comment under 1,000 characters.'});
+ await db.send(new TransactWriteItemsCommand({TransactItems:[{Put:{TableName:process.env.TABLE_NAME,Item:{pk:{S:'private-reviews'},sk:{S:visitor},rating:{N:String(rating)},comment:{S:comment},createdAt:{S:new Date().toISOString()}},ConditionExpression:'attribute_not_exists(pk)'}},{Update:{TableName:process.env.TABLE_NAME,Key:{pk:{S:'rating-summary'},sk:{S:'all'}},UpdateExpression:'ADD #c :one, #t :rating',ExpressionAttributeNames:{'#c':'count','#t':'total'},ExpressionAttributeValues:{':one':{N:'1'},':rating':{N:String(rating)}}}}]}));return response(201,{saved:true});
+ }
+ if(method==='POST'&&path==='/runs/start'){if(typeof body.tour!=='boolean')throw Error('Choose a race mode');const seed=randomBytes(4).readUInt32LE(0);return response(200,{seed,token:sign({kind:'start',id:randomBytes(16).toString('hex'),at:Date.now(),version:COURSE_VERSION,seed,tour:body.tour})});}
+ if(method==='POST'&&path==='/runs/finish'){const run=verify(body.token,'start'),result=replayRace(run.seed,run.tour,body.log,body.endTick);if(Date.now()-run.at<result.milliseconds-2500)throw Error('Run completed faster than real time');return response(200,{...result,receipt:sign({kind:'finish',id:run.id,at:Date.now(),version:COURSE_VERSION,...result})});}
+ if(method==='POST'&&path==='/scores'){const run=verify(body.receipt,'finish'),name=typeof body.name==='string'?body.name.trim():'';if(!/^[\p{L}\p{N} _.-]{2,20}$/u.test(name))return response(400,{error:'Use 2–20 letters, numbers, spaces, dots or dashes.'});await db.send(new PutItemCommand({TableName:process.env.TABLE_NAME,Item:{pk:{S:run.mode+'-v'+COURSE_VERSION},sk:{S:String(run.milliseconds).padStart(9,'0')+'#'+run.id},name:{S:name},ms:{N:String(run.milliseconds)},score:{N:String(run.score)}},ConditionExpression:'attribute_not_exists(pk)'}));return response(201,{saved:true});}
+ return response(404,{error:'Not found'});
+ }catch(err){if(err.name==='TransactionCanceledException')return response(409,{error:'A review has already been saved from this browser.'});if(err.name==='ConditionalCheckFailedException')return response(409,{error:'This run is already saved.'});console.log(JSON.stringify({type:err.name,message:err.message}));return response(400,{error:'This run could not be verified. Please try a new race.'});}}
