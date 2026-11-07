@@ -59,3 +59,5 @@ Pure-engine tests cover manual and scenic two-lap finishes, checkpoint order, fo
 Ramps use a closed, upward-facing deck and shared surface physics. Swept player collisions prevent driving through trees, buildings, poles, barriers and moving barrels. Item boxes use a question-mark texture on every face and break on pickup, including when a player already holds an item. Ten automated checks cover collision sweeps, ramp geometry, two-lap finishes and replay validation.
 
 Project panels include FirstShot and FireGuard live demos, the FireGuard hardware photograph, and the Kiwi + Litchi demo workspace. Automation claims follow the 31 October project report: 202 recorded tests and 11 synthetic statement samples; real TallyPrime and Linux acceptance remain pending. Public images exclude the supplied screenshots containing a home address.
+
+Music is enabled by default. The site attempts playback on load and retries on a click, tap or keyboard interaction if browser autoplay policy blocks it. An explicit visitor mute preference remains respected across visits.

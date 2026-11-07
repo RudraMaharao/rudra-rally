@@ -45,12 +45,25 @@ document.querySelectorAll('[data-panel]').forEach(b=>b.onclick=()=>openSection(b
 $('#pause').onclick=()=>pauseRace();
 function pauseRace(){if(!running||finished)return;showPanel('A little pit stop.','RACE PAUSED',`<p>Your kart is waiting right where you left it.</p><div class="resume-actions"><button class="primary" id="continue-race">RESUME ➜</button><button class="secondary" data-panel="projects">Explore projects ➜</button></div>`);$('#continue-race').onclick=closePanel;}
 const bgm = $('#bgm');
-let musicPreference = null, musicVolume = .35;
-try {const pref=localStorage.getItem('rudra-rally-music');musicPreference=pref===null?null:pref==='on';const stored=localStorage.getItem('rudra-rally-volume');if(stored!==null)musicVolume=Math.max(0,Math.min(1,Number(stored)||0));}catch{}
+let musicPreference = true, musicVolume = .35, audioRequest = 0;
+try {const pref=localStorage.getItem('rudra-rally-music');musicPreference=pref!=='off';const stored=localStorage.getItem('rudra-rally-volume');if(stored!==null)musicVolume=Math.max(0,Math.min(1,Number(stored)||0));}catch{}
 $('#music-volume').value=Math.round(musicVolume*100);bgm.volume=musicVolume;
 function initAudio(){if(!audioContext){audioContext=new (window.AudioContext||window.webkitAudioContext)();gain=audioContext.createGain();gain.gain.value=0;gain.connect(audioContext.destination);oscillator=audioContext.createOscillator();oscillator.type='triangle';oscillator.frequency.value=50;oscillator.connect(gain);oscillator.start();}audioContext.resume().catch(()=>{});}
 function audioUI(){const button=$('#sound');button.setAttribute('aria-pressed',String(soundEnabled));button.setAttribute('aria-label',soundEnabled?'Mute music':'Play music');button.title=soundEnabled?'Pure Raceway — mute':'Play Pure Raceway';$('.sound-slash').hidden=soundEnabled;$('#music-caption').textContent=soundEnabled?'NOW PLAYING · PURE RACEWAY':'PURE RACEWAY · MINTODOG';}
-async function setSound(enabled,remember=false){if(remember){musicPreference=enabled;try{localStorage.setItem('rudra-rally-music',enabled?'on':'off');}catch{}}if(!enabled){soundEnabled=false;bgm.pause();audioUI();return;}try{initAudio();await bgm.play();soundEnabled=true;audioUI();}catch{soundEnabled=false;audioUI();notify('Tap the music button to start the soundtrack.');}}
+async function setSound(enabled,remember=false,quiet=false){
+ const request=++audioRequest;
+ if(remember){musicPreference=enabled;try{localStorage.setItem('rudra-rally-music',enabled?'on':'off');}catch{}}
+ if(!enabled){soundEnabled=false;bgm.pause();audioUI();return;}
+ try{initAudio();await bgm.play();if(request!==audioRequest)return;soundEnabled=true;audioUI();}
+ catch{if(request!==audioRequest)return;soundEnabled=false;audioUI();if(!quiet)notify('Tap the music button to start the soundtrack.');}
+}
+// Attempt audible playback; retry on ordinary interaction when autoplay is blocked.
+function startDefaultMusic(event){
+ if(event.target instanceof Element && event.target.closest('#sound'))return;
+ if(musicPreference&&!soundEnabled&&!document.hidden)void setSound(true,false,true);
+}
+document.addEventListener('click',startDefaultMusic,{capture:true});
+document.addEventListener('keydown',startDefaultMusic,{capture:true});
 $('#sound').onclick=()=>{void setSound(!soundEnabled,true);};
 $('#music-volume').addEventListener('input',event=>{musicVolume=Number(event.target.value)/100;bgm.volume=musicVolume;try{localStorage.setItem('rudra-rally-volume',String(musicVolume));}catch{}});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)bgm.pause();else if(soundEnabled)bgm.play().catch(()=>{soundEnabled=false;audioUI();});});
@@ -178,3 +191,5 @@ function frame(now){requestAnimationFrame(frame);const dt=Math.min((now-lastFram
 }
 function resize(){if(!renderer)return;camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,innerWidth<760?1.3:1.5));}window.addEventListener('resize',resize);
 try{await document.fonts.ready;buildWorld();}catch(error){console.error('3D engine unavailable:',error);$('#loading').hidden=true;$('#webgl-error').hidden=false;$('#intro').hidden=true;$('#world-label').hidden=true;}
+
+if(musicPreference)void setSound(true,false,true);
