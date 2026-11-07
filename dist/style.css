@@ -50,3 +50,9 @@
 /* Readable volume label without changing the slider layout. */
 .volume-control>span{font-size:16px;line-height:1.2;letter-spacing:.5px}
 @media(max-width:760px){.volume-control>span{font-size:14px}}
+
+/* Geometric controls render consistently on phones without emoji substitution. */
+.touch-controls .control-triangle{display:block;width:22px;height:22px;margin:auto;background:var(--ink);clip-path:polygon(50% 0,100% 100%,0 100%);pointer-events:none}
+.touch-controls [data-control="left"] .control-triangle{transform:rotate(-90deg)}
+.touch-controls [data-control="right"] .control-triangle{transform:rotate(90deg)}
+.touch-controls [data-control="brake"] .control-triangle{transform:rotate(180deg)}
