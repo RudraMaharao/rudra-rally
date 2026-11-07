@@ -46,3 +46,7 @@
 #panel .panel-footer #resume{background:var(--yellow);border:2px solid var(--ink);border-radius:12px;box-shadow:0 5px 0 var(--ink);padding:14px 22px;display:inline-flex;align-items:center;justify-content:center}
 #panel .panel-footer #resume:hover{transform:translateY(-2px);box-shadow:0 7px 0 var(--ink)}
 #panel .panel-footer #resume:active{transform:translateY(3px);box-shadow:0 2px 0 var(--ink)}
+
+/* Readable volume label without changing the slider layout. */
+.volume-control>span{font-size:16px;line-height:1.2;letter-spacing:.5px}
+@media(max-width:760px){.volume-control>span{font-size:14px}}
