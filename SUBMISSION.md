@@ -12,7 +12,7 @@ I turned my portfolio into a kart-racing island inspired by my interest in games
 
 Each district represents a real project: paint colour matching at Colour Canyon, edge-AI fire detection at Ember Ridge, document automation at Automation Avenue, and nutrition analytics at Nutrition Gardens. On the first lap, each checkpoint pauses the race and explains the project. Reading time does not count toward the race result. The second lap keeps the action moving.
 
-Skill coins add points. Ramps, drift boosts, item boxes, shields, rival pulses, shortcuts and moving obstacles make the circuit playful. An original funk soundtrack, Apex Groove, gives it a lively racing feel. A shared fastest-five leaderboard lets visitors optionally save a name and their two-lap time. The rating stars accept feedback; written notes are private, while the average rating and count are public.
+Skill coins add points. Ramps, drift boosts, item boxes, shields, rival pulses, shortcuts and moving obstacles make the circuit playful. Pure Raceway, a CC0 synth racing track by MintoDog, gives it an upbeat arcade feel. Music is credited and self-hosted on AWS. A shared fastest-five leaderboard lets visitors optionally save a name and their two-lap time. The rating stars accept feedback; written notes are private, while the average rating and count are public.
 
 The portfolio remains easy to use: Projects, The driver, Skill garage and contact details are always accessible from the menu. Scenic Tour provides automatic driving, and touch controls support phones.
 

@@ -48,7 +48,7 @@ The provisioning script manages the existing Rally resources using the signed-in
 
 ## Credits
 
-Procedural karts, scenery, track and UI are original. Apex Groove is an original 136 BPM composition made for this portfolio: syncopated bass, bright lead, rhythmic keys and punchy drums; synthesis source is in `tools/compose_funk.py`. No Mario Kart or other game soundtrack/assets are used. Three.js uses the MIT licence; Manrope and Bungee use the SIL Open Font License. Licence files ship in `dist/assets/`.
+Procedural karts, scenery, track and UI are original. Music: **Pure Raceway** (160 BPM) by **MintoDog**, released under CC0 on [OpenGameArt](https://opengameart.org/content/pure-raceway). The MP3 is self-hosted on AWS. No Nintendo soundtrack/assets are used. The previous original Apex Groove composition remains in source history; its generator is in `tools/compose_funk.py`. Three.js uses the MIT licence; Manrope and Bungee use the SIL Open Font License. Licence files ship in `dist/assets/`.
 
 ## Validation
 

@@ -1,19 +1,9 @@
 {
-  "title": "Apex Groove",
-  "original": true,
-  "bpm": 136,
-  "bars": 32,
-  "seconds": 56.47058333333333,
-  "peak_dbfs": -0.8191721535781277,
-  "rms_dbfs": -13.475533119485803,
-  "loop_boundary_step": 0.0,
-  "instruments": [
-    "syncopated slap-style bass",
-    "brass-style lead",
-    "clavinet-style keys",
-    "muted guitar-style rhythm",
-    "flute-style variation",
-    "kick/snare/hi-hat"
-  ],
-  "file": "dist/assets/apex-groove.wav"
+  "title": "Pure Raceway",
+  "artist": "MintoDog",
+  "original": false,
+  "bpm": 160,
+  "license": "CC0-1.0",
+  "source": "https://opengameart.org/content/pure-raceway",
+  "file": "dist/assets/pure-raceway.mp3"
 }
