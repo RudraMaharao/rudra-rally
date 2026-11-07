@@ -19,7 +19,7 @@ The stars open a 1–5 rating form with an optional private comment. Only the av
 
 ## Content
 
-FirstShot, FireGuard, CA Firm Automation, and Indian Packaged Food Nutrition Analysis. Driver profile: NMIMS MPSTME education, WeTest game testing, Anubhavi Foundation tutoring, certifications and ongoing fisheries research. Simulation and limited-test-set results are explicitly labelled.
+FirstShot, FireGuard, Kiwi + Litchi accounting automation, and Indian Packaged Food Nutrition Analysis. Driver profile: NMIMS MPSTME education, WeTest game testing, Anubhavi Foundation tutoring, certifications and ongoing fisheries research. Simulation and limited-test-set results are explicitly labelled.
 
 ## Build and preview
 
@@ -53,3 +53,9 @@ Procedural karts, scenery, track and UI are original. Apex Groove is an original
 ## Validation
 
 Pure-engine tests cover manual and scenic two-lap finishes, checkpoint order, four rivals, jump/coin accounting, deterministic replay, rejected partial/malformed replays, cruise transitions, items and repeat-coin prevention. The AWS API was checked for merged ordering across both modes and private review storage; temporary QA records were removed. Browser verification covers the full checkpoint flow and desktop/phone layouts. See [CHECKLIST.md](CHECKLIST.md) for submission requirements that still need external confirmation.
+
+### Course and project update
+
+Ramps use a closed, upward-facing deck and shared surface physics. Swept player collisions prevent driving through trees, buildings, poles, barriers and moving barrels. Item boxes use a question-mark texture on every face and break on pickup, including when a player already holds an item. Ten automated checks cover collision sweeps, ramp geometry, two-lap finishes and replay validation.
+
+Project panels include FirstShot and FireGuard live demos, the FireGuard hardware photograph, and the Kiwi + Litchi demo workspace. Automation claims follow the 31 October project report: 202 recorded tests and 11 synthetic statement samples; real TallyPrime and Linux acceptance remain pending. Public images exclude the supplied screenshots containing a home address.

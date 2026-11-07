@@ -7,7 +7,7 @@ function verify(token,kind){if(typeof token!=='string'||token.length>2500)throw 
 const response=(statusCode,data)=>({statusCode,headers:{'content-type':'application/json','cache-control':'no-store'},body:JSON.stringify(data)});
 export async function handler(event){try{const method=event.requestContext?.http?.method,path=event.rawPath;
  if(method==='GET'&&path==='/scores'){
- const boards=await Promise.all(['race','tour'].map(mode=>db.send(new QueryCommand({TableName:process.env.TABLE_NAME,KeyConditionExpression:'pk = :p',ExpressionAttributeValues:{':p':{S:mode+'-v'+COURSE_VERSION}},Limit:5,ScanIndexForward:true}))));
+ const boards=await Promise.all([3,COURSE_VERSION].flatMap(version=>['race','tour'].map(mode=>db.send(new QueryCommand({TableName:process.env.TABLE_NAME,KeyConditionExpression:'pk = :p',ExpressionAttributeValues:{':p':{S:mode+'-v'+version}},Limit:5,ScanIndexForward:true})))));
  return response(200,{scores:boards.flatMap(result=>(result.Items||[]).map(i=>({name:i.name.S,milliseconds:Number(i.ms.N),score:Number(i.score.N)}))).sort((a,b)=>a.milliseconds-b.milliseconds).slice(0,5)});
  }
  if(method==='GET'&&path==='/reviews/summary'){const r=await db.send(new GetItemCommand({TableName:process.env.TABLE_NAME,Key:{pk:{S:'rating-summary'},sk:{S:'all'}}}));const count=Number(r.Item?.count?.N||0),total=Number(r.Item?.total?.N||0);return response(200,{count,average:count?Math.round(total/count*10)/10:null});}

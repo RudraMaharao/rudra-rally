@@ -26,7 +26,7 @@ policy={'Version':'2012-10-17','Statement':[{'Effect':'Allow','Action':['dynamod
 aws('iam','put-role-policy',RoleName='rudra-rally-leaderboard-v1',PolicyName='scores-and-function-logs',PolicyDocument=json.dumps(policy))
 archive=ROOT/'backend.zip'
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
- z.write(ROOT/'backend/index.mjs','index.mjs');z.write(ROOT/'src/race.js','race.js');z.write(ROOT/'src/track-data.js','track-data.js');z.writestr('package.json','{"type":"module"}')
+ z.write(ROOT/'backend/index.mjs','index.mjs');z.write(ROOT/'src/race.js','race.js');z.write(ROOT/'src/track-data.js','track-data.js');z.write(ROOT/'src/world-data.js','world-data.js');z.write(ROOT/'src/collision.js','collision.js');z.writestr('package.json','{"type":"module"}')
 # Secrets are supplied through a restricted temporary CLI input file, removed immediately after use.
 if 'function' not in s:
  import base64
