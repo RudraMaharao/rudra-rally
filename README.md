@@ -2,7 +2,7 @@
 
 [Play the AWS-hosted portfolio](https://main.d315hq6yqhwgli.amplifyapp.com) · [GitHub source](https://github.com/RudraMaharao/rudra-rally)
 
-Rudra Maharao’s original 3D kart-racing portfolio. Curiosity Island connects four projects with two laps, four CPU rivals, ramps, moving obstacles, shortcuts, item boxes and skill coins. Portfolio sections remain available through the top navigation without playing.
+My original 3D kart-racing portfolio. Curiosity Island connects four projects with two laps, four CPU rivals, ramps, moving obstacles, shortcuts, item boxes and skill coins. Portfolio sections remain available through the top navigation without playing.
 
 ## Play
 
