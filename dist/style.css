@@ -59,4 +59,4 @@
 
 /* Keep the mute strike centred at every music-button size. */
 #sound{display:grid;place-items:center;padding:0;line-height:1}
-#sound .sound-slash{position:absolute;left:50%;top:50%;width:72%;height:2px;background:var(--ink);transform:translate(-50%,-50%) rotate(-45deg);border-radius:2px;pointer-events:none}
+#sound .sound-slash{position:absolute;left:50%;top:50%;width:calc(100% + 2px);height:2px;background:var(--ink);transform:translate(-50%,-50%) rotate(-45deg);border-radius:2px;pointer-events:none}
