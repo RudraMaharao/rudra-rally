@@ -65,3 +65,11 @@
 .project-card .project-icon{height:44px;width:56px;line-height:1}
 .project-icon img{display:block;width:100%;height:100%;object-fit:contain}
 @media(max-width:760px){.project-card .project-icon{width:50px;height:40px}}
+
+/* A larger, distinctive racing-helmet identity for Rudra Rally. */
+.brand{font-size:19px;gap:13px;flex-shrink:0}
+.brand b{font-size:34px;line-height:1.12}
+.brand .flag-icon{display:grid;place-items:center;width:60px;height:60px;padding:5px;border-radius:14px;flex-shrink:0}
+.flag-icon img{display:block;width:100%;height:100%}
+@media(max-width:760px){.brand{font-size:15px;gap:10px}.brand b{font-size:26px}.brand .flag-icon{width:48px;height:48px;padding:4px;border-radius:11px}}
+@media(max-height:550px) and (orientation:landscape){.playing .brand{font-size:9px;gap:8px}.playing .brand b{font-size:16px}.playing .brand .flag-icon{width:34px;height:34px;padding:2px;border-radius:8px}}
