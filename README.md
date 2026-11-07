@@ -61,3 +61,5 @@ Ramps use a closed, upward-facing deck and shared surface physics. Swept player 
 Project panels include FirstShot and FireGuard live demos, the FireGuard hardware photograph, and the Kiwi + Litchi demo workspace. Automation claims follow the 31 October project report: 202 recorded tests and 11 synthetic statement samples; real TallyPrime and Linux acceptance remain pending. Public images exclude the supplied screenshots containing a home address.
 
 Music is enabled by default. The site attempts playback on load and retries on a click, tap or keyboard interaction if browser autoplay policy blocks it. An explicit visitor mute preference remains respected across visits.
+
+Deployment preference: keep the public URL `https://main.d315hq6yqhwgli.amplifyapp.com/` unchanged for every update unless Rudra explicitly requests a URL change.

@@ -60,3 +60,8 @@
 /* Keep the mute strike centred at every music-button size. */
 #sound{display:grid;place-items:center;padding:0;line-height:1}
 #sound .sound-slash{position:absolute;left:50%;top:50%;width:calc(100% + 2px);height:2px;background:var(--ink);transform:translate(-50%,-50%) rotate(-45deg);border-radius:2px;pointer-events:none}
+
+/* Illustrated project marks stay within the existing card-icon row. */
+.project-card .project-icon{height:44px;width:56px;line-height:1}
+.project-icon img{display:block;width:100%;height:100%;object-fit:contain}
+@media(max-width:760px){.project-card .project-icon{width:50px;height:40px}}
