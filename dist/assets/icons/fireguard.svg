@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 64" fill="none" stroke="#152f49" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="m7 13 33-6 12 16-34 7Z" fill="#fffcf2"/><path d="m40 9 10-2 7 13-9 4" fill="#6e9fba"/><path d="m20 30-3 12H8V28M5 26v19" fill="none"/><path d="m52 26 15 6m-19-3 4 15" stroke="#ee9450" stroke-dasharray="3 4"/><path d="M54 59c-18 0-20-14-8-24-1 8 5 9 5 9 0-9 7-13 6-21 18 17 21 36-3 36Z" fill="#ff784e"/><path d="M53 58c-8 0-8-8-2-14 0 5 6 5 6-1 8 9 5 15-4 15Z" fill="#ffd94c" stroke="none"/><path d="m67 4 11 19H56Z" fill="#ffd94c"/><path d="M67 10v5m0 4v.1" stroke-width="3"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 64" fill="none" stroke="#152f49" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
+  <!-- The lens and detection cone share a down-right axis aimed at the flame. -->
+  <path d="M5 33v16m0-5h10l6-17"/>
+  <path d="m5 9 33 10-6 17L3 24Z" fill="#fffcf2"/>
+  <path d="m38 20 8 4-5 13-8-3Z" fill="#6e9fba"/>
+  <path d="m44 30 17 4-9 17Z" fill="#ffd94c" fill-opacity=".25" stroke="none"/>
+  <path d="m45 29 13 4m-15 1 8 14" stroke="#ee9450" stroke-width="2" stroke-dasharray="3 3"/>
+  <path d="M61 61c-14 0-20-10-12-21 0 7 5 7 5 7-1-8 8-12 7-20 16 14 23 34 0 34Z" fill="#ff784e"/>
+  <path d="M61 59c-8 0-8-6-3-13 0 5 5 5 5 0 7 8 5 13-2 13Z" fill="#ffd94c" stroke="none"/>
+  <path d="m67 3 11 19H56Z" fill="#ffd94c"/>
+  <path d="M67 9v5m0 4v.1" stroke-width="3"/>
+</svg>
