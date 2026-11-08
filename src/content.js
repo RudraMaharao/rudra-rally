@@ -1,7 +1,7 @@
 
 export const projects = {
   firstshot: {
-    category: '01 / APPLIED AI · PHYSICS-INFORMED ML', title: 'FirstShot',
+    category: '01 / APPLIED ML · PHYSICS-INFORMED ML', title: 'FirstShot',
     body: '<p>A paint colour-matching and reformulation tool that searches for the recipe with the fewest pigments matching a target under four light sources.</p><h3>The approach</h3><p>Kubelka–Munk physics combined with a neural-network ensemble trained on 14,000 lab panels. Built with Python, NumPy, scikit-learn, FastAPI, Docker, and AWS Lambda.</p><h3>The result</h3><ul><li>Right-first-time matches increased from 50% to 85% in a simulated lab.</li><li>Mean lab trials decreased from 2.27 to 1.38 in the simulation.</li><li>Recipe search became 24× faster.</li><li>Added reformulation of lead and cadmium legacy colours with compliant pigments.</li></ul><p class="fine">Lab improvements were measured in simulation.</p><a class="button dark" href="https://hbcu32j6n5rwcm3rhebgqmo5xq0lsdfi.lambda-url.ap-south-1.on.aws/" target="_blank" rel="noopener noreferrer">Try FirstShot live ➜</a> <a class="button dark" href="https://github.com/RudraMaharao/firstshot" target="_blank" rel="noopener noreferrer">Explore the source ➜</a>'
   },
   fireguard: {
